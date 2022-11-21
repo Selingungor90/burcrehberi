@@ -1,3 +1,4 @@
+import 'package:burcrehberi/burc_detay.dart';
 import 'package:flutter/material.dart';
 
 import 'model/burc.dart';
@@ -14,6 +15,10 @@ class BurcItem extends StatelessWidget {
       child: Card(
         elevation: 4,
         child: ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => BurcDetay(secilenBurc: ListelenenBurc)));
+          },
           leading: Image.asset(
             "images/" + ListelenenBurc.burcKucukResim,
             width: 64,

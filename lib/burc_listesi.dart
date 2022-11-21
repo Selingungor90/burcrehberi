@@ -38,7 +38,7 @@ List<Burc> veriKaynaginiHazirla() {
     var burcDetay = Strings.BURC_GENEL_OZELLIKLERI[i];
     var burcKucukResim = Strings.BURC_ADLARI[i].toLowerCase() + '${i + 1}.png';
     var burcBuyukResim =
-        Strings.BURC_ADLARI[i].toLowerCase() + '_buyuk ${i + 1}.png';
+        Strings.BURC_ADLARI[i].toLowerCase() + '_buyuk${i + 1}.png';
     Burc eklenecekBurc =
         Burc(burcAdi, burcTarih, burcDetay, burcKucukResim, burcBuyukResim);
     gecici.add(eklenecekBurc);
