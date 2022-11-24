@@ -1,9 +1,23 @@
 import 'package:burcrehberi/model/burc.dart';
 import 'package:flutter/material.dart';
+import 'package:palette_generator/palette_generator.dart';
 
-class BurcDetay extends StatelessWidget {
+class BurcDetay extends StatefulWidget {
   final Burc secilenBurc;
   const BurcDetay({required this.secilenBurc, Key? key}) : super(key: key);
+
+  @override
+  State<BurcDetay> createState() => _BurcDetayState();
+}
+
+class _BurcDetayState extends State<BurcDetay> {
+  Color appBarRengi = Colors.transparent;
+  late PaletteGenerator _generator;
+  @override
+  void initState() {
+    super.initState();
+    appBarRenginiBul();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,13 +25,14 @@ class BurcDetay extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
+            backgroundColor: appBarRengi,
             centerTitle: true,
-            title: Text(secilenBurc.burcAdi),
+            title: Text(widget.secilenBurc.burcAdi),
             expandedHeight: 250,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
-                'images/' + secilenBurc.burcBuyukResim,
+                'images/' + widget.secilenBurc.burcBuyukResim,
                 fit: BoxFit.cover,
               ),
             ),
@@ -28,7 +43,7 @@ class BurcDetay extends StatelessWidget {
               margin: EdgeInsets.all(16),
               child: SingleChildScrollView(
                 child: Text(
-                  secilenBurc.burcDetayi,
+                  widget.secilenBurc.burcDetayi,
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
               ),
@@ -37,5 +52,12 @@ class BurcDetay extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void appBarRenginiBul() async {
+    _generator = await PaletteGenerator.fromImageProvider(
+        AssetImage('images/${widget.secilenBurc.burcBuyukResim}'));
+    appBarRengi = _generator.vibrantColor!.color;
+    setState(() {});
   }
 }
