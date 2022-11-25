@@ -16,8 +16,7 @@ class BurcItem extends StatelessWidget {
         elevation: 4,
         child: ListTile(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => BurcDetay(secilenBurc: ListelenenBurc)));
+            Navigator.pushNamed(context, "/BurcDetay",arguments: ListelenenBurc);
           },
           leading: Image.asset(
             "images/" + ListelenenBurc.burcKucukResim,
